@@ -27,9 +27,9 @@ namespace GuessMyNumber
             if (showMsg)
             {
                 Console.Write("\n----------------------------------------------------------------------------------------" +
-                         "\n\nThe computer has randomly picked an integer between 1 and 1000. Try to guess the number.\n\n>>> ");
+                         "\n\nThe computer has randomly picked an integer between 1 and 1000.");
             }
-            int guess = int.Parse(Console.ReadLine().Trim());
+            int guess = GetNumber(0, 1000, false);
             if (guess == number)
             {
                 Console.WriteLine($"\nYour guess is correct. The randomly picked number is {guess}.");
@@ -69,7 +69,7 @@ namespace GuessMyNumber
             }
         }
 
-        public int GetNumber(int min, int max)
+        public int GetNumber(int min, int max, bool line)
         {
             int number = -1;
             bool isValid = false;
@@ -77,8 +77,8 @@ namespace GuessMyNumber
             {
                 try
                 {
-                    Console.Write($"\n----------------------------------------------------------------------------------------" +
-                                  $"\n\nEnter an integer between {min} and {max}\n\n>>> ");
+                    Console.Write( (line? "\n----------------------------------------------------------------------------------------\n" : "" ) 
+                                       + $"\nEnter an integer between {min} and {max}\n\n>>> ");
                     number = int.Parse(Console.ReadLine().Trim());
                     if (number < min || number > max)
                     {

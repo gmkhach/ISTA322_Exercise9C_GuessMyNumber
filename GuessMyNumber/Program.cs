@@ -24,7 +24,7 @@ namespace GuessMyNumber
             game.HumanPlay(game.GetArr(), true);
             
             // Step 3
-            int number = game.GetNumber(1, 1000);
+            int number = game.GetNumber(1, 1000, true);
             game.ComputerPlay(game.GetArr(), number);
         }
     }
