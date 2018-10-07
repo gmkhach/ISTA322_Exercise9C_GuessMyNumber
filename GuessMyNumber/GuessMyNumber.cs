@@ -27,7 +27,7 @@ namespace GuessMyNumber
             if (showMsg)
             {
                 Console.Write("\n----------------------------------------------------------------------------------------" +
-                         "\n\nThe computer has randomly picked an integer between 1 and 1000.");
+                         "\n\nThe computer has randomly picked an integer between 1 and 1000.\n");
             }
             int guess = GetNumber(0, 1000, false);
             if (guess == number)

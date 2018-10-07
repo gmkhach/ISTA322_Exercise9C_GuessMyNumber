@@ -15,17 +15,12 @@ namespace GuessMyNumber
 
         static void Run()
         {
-            // Step 1
             BisectionAlgorithm algorithm = new BisectionAlgorithm();
-            algorithm.FindValue(algorithm.GetArr());
-
-            // Step 2
+            algorithm.FindValue(algorithm.GetArr());    // step 1
             GuessMyNumber game = new GuessMyNumber();
-            game.HumanPlay(game.GetArr(), true);
-            
-            // Step 3
+            game.HumanPlay(game.GetArr(), true);        // step 2
             int number = game.GetNumber(1, 1000, true);
-            game.ComputerPlay(game.GetArr(), number);
+            game.ComputerPlay(game.GetArr(), number);   // step 3
         }
     }
 }
