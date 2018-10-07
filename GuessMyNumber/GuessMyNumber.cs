@@ -46,7 +46,7 @@ namespace GuessMyNumber
             }
             else
             {
-                Console.WriteLine($"\The number is " + (number > midValue ? "greater" : "less") + $" than {midValue}");
+                Console.WriteLine($"\nThe number is " + (number > midValue ? "greater" : "less") + $" than {midValue}");
                 List<int> newList = new List<int>();
                 int startIndex = number > midValue ? Array.IndexOf(list, midValue) + 1 : 0;
                 int endIndex = number < midValue ? Array.IndexOf(list, midValue) - 1 : list.Length - 1;
