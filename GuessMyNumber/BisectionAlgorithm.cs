@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GuessMyNumber
 {
-    class NumberGame
+    class BisectionAlgorithm
     {
-        public NumberGame(int[] list, int number)
+        public BisectionAlgorithm(int[] list, int number)
         {
             this.list = list;
             this.number = number;
