@@ -8,18 +8,23 @@ namespace GuessMyNumber
 {
     class BisectionAlgorithm
     {
-        public BisectionAlgorithm(int[] list, int number)
+        public BisectionAlgorithm()
         {
-            this.list = list;
-            this.number = number;
+            for (int i = 0; i < 10; i++)
+            {
+                arr[i] = i + 1;
+            }
+            this.number = GetNumber(1, 10);
         }
 
-        private int[] list;
+        private int[] arr = new int[10];
         private int number;
 
-        public void FindValue(int[] list)
+        public int[] GetArr() => arr;
+
+        public void FindValue(int[] arr)
         {
-            int midValue = list.Length % 2 == 0 ? list[list.Length / 2 - 1] : list[list.Length / 2];
+            int midValue = arr.Length % 2 == 0 ? arr[arr.Length / 2 - 1] : arr[arr.Length / 2];
             if (number == midValue)
             {
                 Console.WriteLine($"\nValue is {midValue}");
@@ -28,14 +33,38 @@ namespace GuessMyNumber
             {
                 Console.WriteLine($"\nValue is " + (number > midValue ? "greater" : "less") + $" than {midValue}");
                 List<int> newList = new List<int>();
-                int startIndex = number > midValue ? Array.IndexOf(list, midValue) + 1 : 0;
-                int endIndex = number < midValue ? Array.IndexOf(list, midValue) - 1 : list.Length - 1;
+                int startIndex = number > midValue ? Array.IndexOf(arr, midValue) + 1 : 0;
+                int endIndex = number < midValue ? Array.IndexOf(arr, midValue) - 1 : arr.Length - 1;
                 for (int i = startIndex; i <= endIndex; i++)
                 {
-                    newList.Add(list[i]);
+                    newList.Add(arr[i]);
                 }
                 FindValue(newList.ToArray());
             }
+        }
+
+        public int GetNumber(int min, int max)
+        {
+            int number = -1;
+            bool isValid = false;
+            do
+            {
+                try
+                {
+                    Console.Write($"\nEnter an integer between {min} and {max}\n\n>>> ");
+                    number = int.Parse(Console.ReadLine().Trim());
+                    if (number < min || number > max)
+                    {
+                        throw new Exception("Invalid Entry!");
+                    }
+                    isValid = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("\n" + ex.Message);
+                }
+            } while (!isValid);
+            return number;
         }
     }
 }

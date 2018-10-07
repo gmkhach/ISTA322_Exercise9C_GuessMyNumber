@@ -8,16 +8,27 @@ namespace GuessMyNumber
 {
     class GuessMyNumber
     {
-        public GuessMyNumber(int[] arr)
+        public GuessMyNumber()
         {
-            this.arr = arr;
+            for (int i = 0; i < 1000; i++)
+            {
+                arr[i] = i + 1;
+            }
+            Random rnd = new Random();
+            number = rnd.Next(1000);
         }
-        int[] arr = new int[1000];
-        int number;
+        private int[] arr = new int[1000];
+        private int number;
 
-        public void HumanPlay(int[] list, int number)
+        public int[] GetArr() => arr;
+
+        public void HumanPlay(int[] list, bool showMsg)
         {
-            Console.Write("\n>>> ");
+            if (showMsg)
+            {
+                Console.Write("\n----------------------------------------------------------------------------------------" +
+                         "\n\nThe computer has randomly picked an integer between 1 and 1000. Try to guess the number.\n\n>>> ");
+            }
             int guess = int.Parse(Console.ReadLine().Trim());
             if (guess == number)
             {
@@ -33,7 +44,7 @@ namespace GuessMyNumber
                 {
                     newList.Add(list[i]);
                 }
-                HumanPlay(newList.ToArray(), number);
+                HumanPlay(newList.ToArray(), false);
             }
         }
 
@@ -42,7 +53,7 @@ namespace GuessMyNumber
             int midValue = list.Length % 2 == 0 ? list[list.Length / 2 - 1] : list[list.Length / 2];
             if (number == midValue)
             {
-                Console.WriteLine($"\nValue is {midValue}");
+                Console.WriteLine($"\nThe number is {midValue}\n");
             }
             else
             {
@@ -56,6 +67,31 @@ namespace GuessMyNumber
                 }
                 ComputerPlay(newList.ToArray(), number);
             }
+        }
+
+        public int GetNumber(int min, int max)
+        {
+            int number = -1;
+            bool isValid = false;
+            do
+            {
+                try
+                {
+                    Console.Write($"\n----------------------------------------------------------------------------------------" +
+                                  $"\n\nEnter an integer between {min} and {max}\n\n>>> ");
+                    number = int.Parse(Console.ReadLine().Trim());
+                    if (number < min || number > max)
+                    {
+                        throw new Exception("Invalid Entry!");
+                    }
+                    isValid = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("\n" + ex.Message);
+                }
+            } while (!isValid);
+            return number;
         }
     }
 }
