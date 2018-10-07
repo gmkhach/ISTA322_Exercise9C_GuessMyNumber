@@ -33,7 +33,9 @@ namespace GuessMyNumber
             GuessMyNumber game = new GuessMyNumber(arr);
             game.HumanPlay(arr, number);
             // Step 3
-            //gameComputerPlay(arr);
+            Console.Write("\nEnter an integer between 1 and 1000\n\n>>> ");
+            number = int.Parse(Console.ReadLine().Trim());
+            game.ComputerPlay(arr, number);
         }
 
     }

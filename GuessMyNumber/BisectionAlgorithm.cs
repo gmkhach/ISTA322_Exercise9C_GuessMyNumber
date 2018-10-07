@@ -37,6 +37,5 @@ namespace GuessMyNumber
                 FindValue(newList.ToArray());
             }
         }
-
     }
 }

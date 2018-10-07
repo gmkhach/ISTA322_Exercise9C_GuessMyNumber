@@ -8,7 +8,7 @@ namespace GuessMyNumber
 {
     class GuessMyNumber
     {
-       public GuessMyNumber(int[] arr)
+        public GuessMyNumber(int[] arr)
         {
             this.arr = arr;
         }
@@ -34,6 +34,27 @@ namespace GuessMyNumber
                     newList.Add(list[i]);
                 }
                 HumanPlay(newList.ToArray(), number);
+            }
+        }
+
+        public void ComputerPlay(int[] list, int number)
+        {
+            int midValue = list.Length % 2 == 0 ? list[list.Length / 2 - 1] : list[list.Length / 2];
+            if (number == midValue)
+            {
+                Console.WriteLine($"\nValue is {midValue}");
+            }
+            else
+            {
+                Console.WriteLine($"\The number is " + (number > midValue ? "greater" : "less") + $" than {midValue}");
+                List<int> newList = new List<int>();
+                int startIndex = number > midValue ? Array.IndexOf(list, midValue) + 1 : 0;
+                int endIndex = number < midValue ? Array.IndexOf(list, midValue) - 1 : list.Length - 1;
+                for (int i = startIndex; i <= endIndex; i++)
+                {
+                    newList.Add(list[i]);
+                }
+                ComputerPlay(newList.ToArray(), number);
             }
         }
     }
