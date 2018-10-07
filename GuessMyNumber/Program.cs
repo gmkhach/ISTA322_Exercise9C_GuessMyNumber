@@ -16,9 +16,9 @@ namespace GuessMyNumber
         static void Run()
         {
             int[] list = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            Console.Write("\nEnter an integer between 1 and 10\n\n>>> ");
-            int number = int.Parse(Console.ReadLine().Trim());
+            int number = -1;
             // Step 1
+            number = GetNumber(1, 10);
             BisectionAlgorithm algorithm = new BisectionAlgorithm(list, number);
             algorithm.FindValue(list);
             // Step 2
@@ -33,10 +33,31 @@ namespace GuessMyNumber
             GuessMyNumber game = new GuessMyNumber(arr);
             game.HumanPlay(arr, number);
             // Step 3
-            Console.Write("\nEnter an integer between 1 and 1000\n\n>>> ");
-            number = int.Parse(Console.ReadLine().Trim());
+            number = GetNumber(1, 1000);
             game.ComputerPlay(arr, number);
         }
 
+        static int GetNumber(int min, int max)
+        {
+            int number = -1;
+            bool isValid = false;
+            do
+            {
+                try
+                {
+                    Console.Write($"\nEnter an integer between {min} and {max}\n\n>>> ");
+                    number = int.Parse(Console.ReadLine().Trim());
+                    if (number < min || number > max)
+                    {
+                        throw new Exception("\nInvalid Entry!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            } while (isValid);
+            return number;
+        }
     }
 }
